@@ -41,7 +41,7 @@ export default function Options({ id, info }) {
         for (let i = 0; i < 9; i++) {
             let paisrandom;
 
-            if (FunctionRandom(0, 2) === 5 && info.borders?.length) {
+            if (FunctionRandom(0, 2) === 1 && info.borders?.length) {
                 paisrandom = info.borders[FunctionRandom(0, info?.borders?.length)];
                 setFronteras((prev) => [...prev, paisrandom])
                 if (temporales.includes(paisrandom)) {
