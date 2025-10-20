@@ -41,7 +41,7 @@ export default function Options({ id, info }) {
         for (let i = 0; i < 9; i++) {
             let paisrandom;
 
-            if (FunctionRandom(0, 2) === 1 && info.borders?.length) {
+            if (FunctionRandom(0, 2) === 5 && info.borders?.length) {
                 paisrandom = info.borders[FunctionRandom(0, info?.borders?.length)];
                 setFronteras((prev) => [...prev, paisrandom])
                 if (temporales.includes(paisrandom)) {
@@ -69,7 +69,12 @@ export default function Options({ id, info }) {
         let paisRandom = pais;
 
         if (pais === null) {
-            if (!info.borders || info.borders.length === 0) {
+            const fronterasReales = info.borders || [];
+            const opcionesConFrontera = paises
+                .map((p) => p.cca3)
+                .filter((p) => fronterasReales.includes(p));
+
+            if (opcionesConFrontera.length === 0) {
             } else {
                 nuevoValor -= 1;
             }
@@ -80,7 +85,8 @@ export default function Options({ id, info }) {
                 } while (paisesVisitados.includes(paisRandom));
             }
         } else {
-            if (!info.borders || !info.borders.includes(pais)) {
+            const fronterasReales = info.borders || [];
+            if (!fronterasReales.includes(pais)) {
                 nuevoValor -= 1;
             }
         }
@@ -104,6 +110,7 @@ export default function Options({ id, info }) {
             navigate(`/${paisRandom}`);
         }
     }
+
 
     return (
         <>
